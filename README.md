@@ -37,5 +37,6 @@ Considering the above ideas and arguments, we can see a lot of possibilities for
 
 ### Some scope of Improvement
 * I have implemented dictionary, maximum size and time with global variables. However, a better idea can be to implement these variables as instance variables.
+* This program assumes that words are case sensitive,i.e., word with a lowercase letter is different from the same word but having the same letter in uppercase. 
 
 IN CASE OF ANY ISSUES, PLEASE LET ME KNOW BY DROPPING A MAIL AT ankurk@iitk.ac.in
