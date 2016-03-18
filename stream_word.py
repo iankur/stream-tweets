@@ -35,6 +35,8 @@ class MyStreamListener(StreamListener):
 		length = len(dict_word)
 
 		for word in list_words:					#these are the words to be inserted in dictionary
+			if(time.time() - time1 >= 30):
+				break
 			if length == N:						#if dictionary reaches its size
 				key = dict_word.keys()			#list of present keys in dictionary
 				for entry in key:				#delete entry with 0 score
@@ -52,6 +54,7 @@ class MyStreamListener(StreamListener):
 				length = length + 1				#use this time later to determine age of entry
 
 		if(time.time() - time1 >= 30):			#update dictionary every 30 sec
+			time1 = time.time()
 			flag = flag + 1
 			self.update_score()
 			if(len(dict_word) > 0 and flag == 2): #flag = 2 => 60 seconds passed
@@ -60,7 +63,6 @@ class MyStreamListener(StreamListener):
 						print dict_word[keys][0], keys
 				flag = 0	#update flag to print on every 60 sec
 				print 'Now hold for another 60 seconds'
-			time1 = time.time()					#update time also to measure another 60 sec
 
 	def on_data(self, raw_data):
 
