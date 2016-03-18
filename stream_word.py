@@ -13,13 +13,14 @@ access_token = "708550108011364352-ZpSSKV97JGgHaBVyOhjrvcd0km1OHEY"
 access_secret = "Cz7QObZJ0BREaJJtodEjR7G3Y7YaBBcWIW1SpGAMgX3JD"
 dict_word = {}
 time1 = time.time()	#start time
+time2 = time1
 N = 1000			#max size of cache
 flag = 0			#flag to output every 1 minute
 
 class MyStreamListener(StreamListener):
 
 	def update_score(self):						#this function updates count of each word
-		time2 = time.time()						#use time2 to update dictionary
+	#	time2 = time.time()						#use time2 to update dictionary
 		if len(dict_word) > 0:					#do not look into dictionary if empty
 			key_dict = dict_word.keys()			#list of keys to be updated
 			for word in key_dict:
@@ -30,6 +31,7 @@ class MyStreamListener(StreamListener):
 
 	def process_data(self, data):				#this function processes twitter data
 		global time1
+		global time2
 		global flag
 		list_words = data.split()				#list of words in data	
 		length = len(dict_word)
@@ -55,6 +57,7 @@ class MyStreamListener(StreamListener):
 
 		if(time.time() - time1 >= 30):			#update dictionary every 30 sec
 			time1 = time.time()
+			time2 = time1
 			flag = flag + 1
 			self.update_score()
 			if(len(dict_word) > 0 and flag == 2): #flag = 2 => 60 seconds passed
